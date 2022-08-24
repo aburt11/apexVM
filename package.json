@@ -1,0 +1,22 @@
+{
+  "name": "apexvm",
+  "version": "1.0.0",
+  "description": "apex vm",
+  "main": "./dist/index.cjs",
+ 
+  "scripts": {
+    "test": "test"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@types/body-parser": "^1.19.2",
+    "@types/express": "^4.17.13",
+    "@types/node": "^18.7.12",
+    "quickjs-emscripten": "^0.21.0",
+    "quickjs-emscripten-sync": "^1.4.0"
+  },
+  "devDependencies": {
+    "typescript": "^4.7.4"
+  }
+}
