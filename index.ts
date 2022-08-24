@@ -74,7 +74,3 @@ this.killVM();
 
 var VM = new JSVM();
 
-//setTimeout(()=>{
-  console.log(VM);
-  console.log("DONE");
-//},5000)
