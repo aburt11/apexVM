@@ -21,6 +21,8 @@ export class Hypervisor{
 export default class JSVM {
 
 
+  demo = ` `
+
   vm:any;
 
   qjsContext:any;
@@ -44,12 +46,17 @@ export default class JSVM {
   });
  }
 
+ setMemoryLimit(bytes:number){
+  this.vm.setMemoryLimit(bytes * bytes * bytes);
+ }
+
+ setStackSize(bytes:number){
+  this.vm.setMaxStackSize(bytes * bytes * bytes);
+ }
+
  runVM(payload:string){
-
-
   // We can pass objects to the context and run code safely
-  
-  //arena.expose(exposed);
+    //arena.expose(exposed);
   const result = this.vm.evalCode(payload);
   if (result.error) {
     console.log("Execution failed:", this.vm.dump(result.error))
