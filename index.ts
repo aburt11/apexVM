@@ -8,7 +8,9 @@ export class Hypervisor{
   }
 
   public async scan(){
+   let res = await this.vm.dump(this);
     
+    return res;
   }
 
 
@@ -31,9 +33,12 @@ export default class JSVM {
   console.time("VMWarmup");
   this.qjsContext  = getQuickJS().then((res)=>{
     this.vm = res.newContext();
+
+    const hyperV = new Hypervisor(this.vm);
+    hyperV.scan();
     console.timeEnd("VMWarmup");
     console.time("VMW_RUN_CODE");
-    this.runVM('hi there :)');
+    this.runVM(`"hi there :)";`);
   },err=>{
     console.log("GET JSVMENV ERROR",err);
   });
@@ -45,7 +50,7 @@ export default class JSVM {
   // We can pass objects to the context and run code safely
   
   //arena.expose(exposed);
-  const result = this.vm.evalCode(`${payload}`);
+  const result = this.vm.evalCode(payload);
   if (result.error) {
     console.log("Execution failed:", this.vm.dump(result.error))
     result.error.dispose()
